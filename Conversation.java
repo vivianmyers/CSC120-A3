@@ -14,9 +14,9 @@ class Conversation {
     return str.contains("I") || str.contains("am") || str.contains("me")|| str.contains("you") || str.contains("my") || str.contains("your");
   }
   /**
-   * This method replaces any key words with its counterpart, making sure each key word is not part of a bigger word (e.g. I in Idaho)
+   * This method splits the user input string into an array. This method replaces any key words with its counterpart, making sure each key word is not part of a bigger word (e.g. I in Idaho). 
    * @param str
-   * @return String containing all replaced words w/ a question mark if any words were switched
+   * @return String containing all replaced words 
    */
   public static String changeWords(String str){
     String[] words = str.split("\\s+");
