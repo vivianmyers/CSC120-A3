@@ -21,14 +21,14 @@ class Conversation {
   public static String changeWords(String str){
     String[] words = str.split("\\s+");
 
-    // Create an empty string to store the mirrored sentence
+    
     String mirroredSentence = "";
 
-    // Iterate through each word and mirror it if necessary
+    
     for (String word : words) {
       switch (word) {
         case "I":
-          mirroredSentence += "You ";
+          mirroredSentence += "you ";
           break;
         case "me":
           mirroredSentence += "you ";
@@ -45,26 +45,19 @@ class Conversation {
         case "your":
           mirroredSentence += "my ";
           break;
+        case "are":
+          mirroredSentence += "am ";
+          break;
         default:
-          mirroredSentence += word + " "; // Keep the word unchanged
+          mirroredSentence += word + " "; 
           break;
       }
     }
 
-    // Trim the trailing space and return the mirrored sentence
+    
     return mirroredSentence.trim();
 
-    /*returnStr = returnStr.replaceAll("\\bI\\b", "You");
-    returnStr = returnStr.replaceAll("\\bam\\b", "are");
-    returnStr = returnStr.replaceAll("\\bme\\b", "you");
-    returnStr = returnStr.replaceAll("\\byou\\b", "I");
-    returnStr = returnStr.replaceAll("\\bmy\\b", "your");
-    returnStr = returnStr.replaceAll("\\byour\\b", "my");
-````*/
-    /*if(returnStr != str){
-      return returnStr + "?";
-    }
-    return str;*/
+    
   }
 
   /**
