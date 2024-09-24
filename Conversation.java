@@ -19,19 +19,52 @@ class Conversation {
    * @return String containing all replaced words w/ a question mark if any words were switched
    */
   public static String changeWords(String str){
-    String returnStr = str;
+    String[] words = str.split("\\s+");
 
-    returnStr = returnStr.replaceAll("\\bI\\b", "You");
+    // Create an empty string to store the mirrored sentence
+    String mirroredSentence = "";
+
+    // Iterate through each word and mirror it if necessary
+    for (String word : words) {
+      switch (word) {
+        case "I":
+          mirroredSentence += "You ";
+          break;
+        case "me":
+          mirroredSentence += "you ";
+          break;
+        case "am":
+          mirroredSentence += "are ";
+          break;
+        case "you":
+          mirroredSentence += "I ";
+          break;
+        case "my":
+          mirroredSentence += "your ";
+          break;
+        case "your":
+          mirroredSentence += "my ";
+          break;
+        default:
+          mirroredSentence += word + " "; // Keep the word unchanged
+          break;
+      }
+    }
+
+    // Trim the trailing space and return the mirrored sentence
+    return mirroredSentence.trim();
+
+    /*returnStr = returnStr.replaceAll("\\bI\\b", "You");
     returnStr = returnStr.replaceAll("\\bam\\b", "are");
     returnStr = returnStr.replaceAll("\\bme\\b", "you");
     returnStr = returnStr.replaceAll("\\byou\\b", "I");
     returnStr = returnStr.replaceAll("\\bmy\\b", "your");
     returnStr = returnStr.replaceAll("\\byour\\b", "my");
-
-    if(returnStr != str){
+````*/
+    /*if(returnStr != str){
       return returnStr + "?";
     }
-    return str;
+    return str;*/
   }
 
   /**
@@ -44,7 +77,7 @@ class Conversation {
   int rounds = 0;
   Random rand = new Random();
   ArrayList<String> transcript = new ArrayList<>();
-  String[] responses = {"Hm...", "Cool!", "Very interesting!", "Really?"};
+  String[] responses = {"Hm...", "Cool!", "Very interesting!", "Really?", "Very Profound.."};
 
   System.out.println("How many rounds?");
   Scanner input = new Scanner(System.in);
@@ -64,9 +97,9 @@ class Conversation {
     transcript.add(userInput);
 
     if(scan(userInput)){
-      if(userInput != changeWords(userInput)){
-        System.out.println(changeWords(userInput));
-        transcript.add(changeWords(userInput));
+      if(! userInput.equals(changeWords(userInput))){
+        System.out.println(changeWords(userInput) + "?");
+        transcript.add(changeWords(userInput) + "?");
       }else{
         transcript.add(responses[rand.nextInt(responses.length)]);
         System.out.println(transcript.getLast());
