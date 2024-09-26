@@ -1,6 +1,5 @@
 
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.Random;
 
 class Conversation {
@@ -45,9 +44,6 @@ class Conversation {
         case "your":
           mirroredSentence += "my ";
           break;
-        case "are":
-          mirroredSentence += "am ";
-          break;
         default:
           mirroredSentence += word + " "; 
           break;
@@ -69,7 +65,8 @@ class Conversation {
 
   int rounds = 0;
   Random rand = new Random();
-  ArrayList<String> transcript = new ArrayList<>();
+  //ArrayList<String> transcript = new ArrayList<>();
+
   String[] responses = {"Hm...", "Cool!", "Very interesting!", "Really?", "Very Profound.."};
 
   System.out.println("How many rounds?");
@@ -78,30 +75,37 @@ class Conversation {
 
   rounds = input.nextInt();
   System.out.println("Number of Rounds: " + rounds);
-
+  String[] transcript = new String[rounds* 2 + 2];
+  int transcriptIndex = 0;
 
   System.out.println("Hello! Whats up?");
-  transcript.add("Hello! Whats up?");
-
+  //transcript.add("Hello! Whats up?");
+  transcript[transcriptIndex++] = "Hello! Whats up?";
   //conversation loop
   for(int i = 0; i < rounds; i++){
     Scanner input2 = new Scanner(System.in);
     String userInput = input2.nextLine();
-    transcript.add(userInput);
+    transcript[transcriptIndex++] = userInput;
+    //transcript.add(userInput);
 
     if(scan(userInput)){
       if(! userInput.equals(changeWords(userInput))){
         System.out.println(changeWords(userInput) + "?");
-        transcript.add(changeWords(userInput) + "?");
+        transcript[transcriptIndex++] = changeWords(userInput) + "?";
+        //transcript.add(changeWords(userInput) + "?");
       }else{
-        transcript.add(responses[rand.nextInt(responses.length)]);
-        System.out.println(transcript.getLast());
+        //transcript.add(responses[rand.nextInt(responses.length)]);
+        transcript[transcriptIndex++] = responses[rand.nextInt(responses.length)];
+        //System.out.println(transcript.getLast());
+        System.out.println(transcript[transcriptIndex-1]);
        
       }
 
     }else{
-      transcript.add(responses[rand.nextInt(responses.length)]);
-      System.out.println(transcript.getLast());
+      //transcript.add(responses[rand.nextInt(responses.length)]);
+      transcript[transcriptIndex++] = responses[rand.nextInt(responses.length)];
+      //System.out.println(transcript.getLast());
+      System.out.println(transcript[transcriptIndex-1]);
       
     }
     
@@ -110,12 +114,17 @@ class Conversation {
   }// end conversation loop
 
   System.out.println("OK, Bye!");
-  transcript.add("OK, Bye!");
+  //transcript.add("OK, Bye!");
+  transcript[transcriptIndex++] = "OK, Bye!";
   System.out.println("\nTRANSCRIPT:");
   
-
+  /* 
   for(int i = 0; i<transcript.size(); i++){
     System.out.println(transcript.get(i));
+  }*/
+
+  for(int i = 0; i < transcript.length; i++){
+    System.out.println(transcript[i]);
   }
 
 
