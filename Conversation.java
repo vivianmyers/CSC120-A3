@@ -19,7 +19,6 @@ class Conversation {
    */
   public static String changeWords(String str){
     String[] words = str.split("\\s+");
-
     
     String mirroredSentence = "";
 
@@ -57,72 +56,72 @@ class Conversation {
   }
 
   /**
-   * main
+   * main contains conversation loop
    * @param arguments
    */
   public static void main(String[] arguments) {
     // You will start the conversation here.
 
-  int rounds = 0;
-  Random rand = new Random();
+    int rounds = 0;
+    Random rand = new Random();
   
 
-  String[] responses = {"Hm...", "Cool!", "Very interesting!", "Really?", "Very Profound.."};
+    String[] responses = {"Hm...", "Cool!", "Very interesting!", "Really?", "Very Profound.."};
 
-  System.out.println("How many rounds?");
-  Scanner input = new Scanner(System.in);
+    System.out.println("How many rounds?");
+    Scanner input = new Scanner(System.in);
   
 
-  rounds = input.nextInt();
-  System.out.println("Number of Rounds: " + rounds);
-  String[] transcript = new String[rounds* 2 + 2];
-  int transcriptIndex = 0;
+    rounds = input.nextInt();
+    System.out.println("Number of Rounds: " + rounds);
+    String[] transcript = new String[rounds* 2 + 2];
+    int transcriptIndex = 0;
 
-  System.out.println("Hello! Whats up?");
+    System.out.println("Hello! Whats up?");
   
-  transcript[transcriptIndex++] = "Hello! Whats up?";
-  //conversation loop
-  for(int i = 0; i < rounds; i++){
-    Scanner input2 = new Scanner(System.in);
-    String userInput = input2.nextLine();
-    transcript[transcriptIndex++] = userInput;
+    transcript[transcriptIndex++] = "Hello! Whats up?";
+    //conversation loop
+    for(int i = 0; i < rounds; i++){
+      Scanner input2 = new Scanner(System.in);
+      String userInput = input2.nextLine();
+      transcript[transcriptIndex++] = userInput;
     
 
-    if(scan(userInput)){
-      if(! userInput.equals(changeWords(userInput))){
-        System.out.println(changeWords(userInput) + "?");
-        transcript[transcriptIndex++] = changeWords(userInput) + "?";
+      if(scan(userInput)){
+        if(! userInput.equals(changeWords(userInput))){
+          System.out.println(changeWords(userInput) + "?");
+          transcript[transcriptIndex++] = changeWords(userInput) + "?";
         
-      }else{
+        }else{
         
-        transcript[transcriptIndex++] = responses[rand.nextInt(responses.length)];
+          transcript[transcriptIndex++] = responses[rand.nextInt(responses.length)];
         
-        System.out.println(transcript[transcriptIndex-1]);
+          System.out.println(transcript[transcriptIndex-1]);
        
-      }
+        }
 
-    }else{
+      }else{
       
-      transcript[transcriptIndex++] = responses[rand.nextInt(responses.length)];
+        transcript[transcriptIndex++] = responses[rand.nextInt(responses.length)];
       
-      System.out.println(transcript[transcriptIndex-1]);
+        System.out.println(transcript[transcriptIndex-1]);
       
-    }
+      }
     
 
 
-  }// end conversation loop
+    }// end conversation loop
 
-  System.out.println("OK, Bye!");
+    System.out.println("OK, Bye!");
   
-  transcript[transcriptIndex++] = "OK, Bye!";
-  System.out.println("\nTRANSCRIPT:");
+    transcript[transcriptIndex++] = "OK, Bye!";
+    System.out.println("\nTRANSCRIPT:");
   
   
 
-  for(int i = 0; i < transcript.length; i++){
-    System.out.println(transcript[i]);
-  }
+    for(int i = 0; i < transcript.length; i++){
+      System.out.println(transcript[i]);
+    }
 
 
 
